@@ -1,15 +1,26 @@
 package stretch;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public interface Piece {
+public abstract class Piece {
 	
-	public ArrayList<Square> getSquaresPlaceLeft(int n);
+	protected Board board;
+	protected ArrayList<Square> s;
 	
-	public ArrayList<Square> getSquaresPlaceRight(int n);
+	public Piece(Board b) {
+		board = b;
+	}
 	
-	public boolean isValid();
+	public abstract ArrayList<Square> getSquaresPlaceLeft(int n);
 	
-	public String getLetter();
+	public abstract ArrayList<Square> getSquaresPlaceRight(int n);
 	
+	public abstract String getLetter();
+	
+	public boolean isValid() {
+		for(Square t:s) {
+			if(t.isBlocked() || t.getLetter()!=null) return false;
+		}
+		return true;
+	}
 }
