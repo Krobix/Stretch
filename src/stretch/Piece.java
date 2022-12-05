@@ -8,6 +8,7 @@ public abstract class Piece {
 	protected ArrayList<Square> s;
 	
 	public Piece(Board b) {
+		//System.out.println("[DEBUG] New piece");
 		board = b;
 	}
 	
@@ -15,11 +16,17 @@ public abstract class Piece {
 	
 	public abstract ArrayList<Square> getSquaresPlaceRight(int n);
 	
-	public abstract String getLetter();
+	public String getLetter() {
+		return " ";
+	}
+	
+	public ArrayList<Square> getSquares(){
+		return s;
+	}
 	
 	public boolean isValid() {
 		for(Square t:s) {
-			if(t.isBlocked() || t.getLetter()!=null) return false;
+			if(t==null || t.isBlocked() || t.getLetter()!=null) return false;
 		}
 		return true;
 	}

@@ -15,11 +15,14 @@ public class CPiece extends Piece {
 		squares.add(new Square(super.board.getSquareByID(n)));
 		x = squares.get(0).getX();
 		y = squares.get(0).getY();
-		squares.add(new Square(super.board.getSquareByCoords(x+1, y)));
-		squares.add(new Square(super.board.getSquareByCoords(x+1, y+1)));
-		squares.add(new Square(super.board.getSquareByCoords(x+1, y+2)));
-		squares.get(0).toggleHole();
-		squares.get(3).toggleHole();
+		squares.add(super.board.getSquareByCoords(x+1, y));
+		squares.add(super.board.getSquareByCoords(x+1, y+1));
+		squares.add(super.board.getSquareByCoords(x+1, y+2));
+		for (int i=0; i<squares.size(); i++) {
+			if(squares.get(i)!=null) squares.set(i, new Square(squares.get(i)));
+		}
+		if(squares.get(0)!=null) squares.get(0).toggleHole();
+		if(squares.get(3)!=null) squares.get(3).toggleHole();
 		super.s = squares;
 		return squares;
 	}
@@ -31,11 +34,14 @@ public class CPiece extends Piece {
 		squares.add(new Square(super.board.getSquareByID(n)));
 		x = squares.get(0).getX();
 		y = squares.get(0).getY();
-		squares.add(new Square(super.board.getSquareByCoords(x, y-1)));
-		squares.add(new Square(super.board.getSquareByCoords(x, y-2)));
-		squares.add(new Square(super.board.getSquareByCoords(x-1, y-2)));
-		squares.get(0).toggleHole();
-		squares.get(3).toggleHole();
+		squares.add(super.board.getSquareByCoords(x, y-1));
+		squares.add(super.board.getSquareByCoords(x, y-2));
+		squares.add(super.board.getSquareByCoords(x-1, y-2));
+		for (int i=0; i<squares.size(); i++) {
+			if(squares.get(i)!=null) squares.set(i, new Square(squares.get(i)));
+		}
+		if(squares.get(0)!=null) squares.get(0).toggleHole();
+		if(squares.get(3)!=null) squares.get(3).toggleHole();
 		super.s = squares;
 		return squares;
 	}

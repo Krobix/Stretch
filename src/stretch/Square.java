@@ -36,10 +36,6 @@ public class Square {
 		return blocked;
 	}
 	
-	public void setletter(String l) {
-		letter = l;
-	}
-	
 	public String getLetter() {
 		return letter;
 	}

@@ -3,9 +3,6 @@ package stretch;
 import java.util.ArrayList;
 
 public class APiece extends Piece {
-
-	private Board board;
-	private ArrayList<Square> s;
 	
 	public APiece(Board b) {
 		super(b);
@@ -18,10 +15,13 @@ public class APiece extends Piece {
 		squares.add(new Square(board.getSquareByID(n)));
 		x = squares.get(0).getX();
 		y = squares.get(0).getY();
-		squares.add(new Square(board.getSquareByCoords(x+1, y)));
-		squares.add(new Square(board.getSquareByCoords(x+2, y)));
-		squares.get(0).toggleHole();
-		squares.get(2).toggleHole();
+		squares.add(board.getSquareByCoords(x+1, y));
+		squares.add(board.getSquareByCoords(x+2, y));
+		for (int i=0; i<squares.size(); i++) {
+			if(squares.get(i)!=null) squares.set(i, new Square(squares.get(i)));
+		}
+		if(squares.get(0)!=null) squares.get(0).toggleHole();
+		if(squares.get(2)!=null) squares.get(2).toggleHole();
 		s = squares;
 		return squares;
 	}
@@ -33,10 +33,14 @@ public class APiece extends Piece {
 		squares.add(new Square(board.getSquareByID(n)));
 		x = squares.get(0).getX();
 		y = squares.get(0).getY();
-		squares.add(new Square(board.getSquareByCoords(x-1, y)));
-		squares.add(new Square(board.getSquareByCoords(x-2, y)));
-		squares.get(0).toggleHole();
-		squares.get(2).toggleHole();
+		squares.add(board.getSquareByCoords(x-1, y));
+		squares.add(board.getSquareByCoords(x-2, y));
+		for (int i=0; i<squares.size(); i++) {
+			if(squares.get(i)!=null) squares.set(i, new Square(squares.get(i)));
+		}
+		if(squares.get(0)!=null) squares.get(0).toggleHole();
+		if(squares.get(2)!=null) squares.get(2).toggleHole();
+		//System.out.println("[DEBUG] squares.get(0) = X:" + squares.get(0).getX() + " Y:" + squares.get(0).getY());
 		s = squares;
 		return squares;
 	}
