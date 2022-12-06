@@ -10,7 +10,7 @@ public class Square {
 		id = a;
 		x = b;
 		y = c;
-		letter = null;
+		letter = " ";
 		blocked = false;
 		hole = false;
 	}
@@ -30,6 +30,8 @@ public class Square {
 	
 	public void toggleBlocked() {
 		blocked = !blocked;
+		if(blocked) letter = "#";
+		else letter = " ";
 	}
 	
 	public boolean isBlocked() {

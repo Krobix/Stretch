@@ -21,8 +21,8 @@ public class Board {
 	
 	public void createGrid(int[] blocked) {
 		int id=1;
-		for (int i=0; i<=height; i++) {
-			for(int j=0; j<=length; j++) {
+		for (int i=0; i<height; i++) {
+			for(int j=0; j<length; j++) {
 				Square s = new Square(id, j, i);
 				squares.add(s);
 				System.out.println("[DEBUG] Square ID:" + s.getID() + " X:" + s.getX() + " Y:" + s.getY());
@@ -61,7 +61,7 @@ public class Board {
 	public void printBoard() {
 		String topBorder = "";
 		for(int i=0; i<length; i++) {
-			topBorder += "-----";
+			topBorder += "---";
 		}
 		System.out.println(topBorder);
 		for(int i=0; i<height; i++) {
@@ -76,8 +76,9 @@ public class Board {
 	public void stretch(int s) {
 		Square start = getSquareByID(s);
 		Square lastSquare;
+		String oldL = new String(letters);
 		//System.out.println("[DEBUG] start.getX()=" + start.getX() + " length-1=" + (length-1));
-		if(!(start.getX()==0 || start.getX()==length)) {
+		if(!(start.getX()==0 || start.getX()==length-1)) {
 			System.out.println("Square needs to be either on the far left or far right side");
 			System.exit(1);
 		}
@@ -85,15 +86,19 @@ public class Board {
 		else leftToRight = false;
 		
 		if(leftToRight) {
-			lastSquare = new Square(-1, -1, 0);
+			lastSquare = new Square(-1, -1, start.getY());
 		}
 		else {
-			lastSquare = new Square(-1, length+1, 0);
+			lastSquare = new Square(-1, length, start.getY());
 		}
 		
 		while(!solved) {
 			Piece piece;
 			//Change this code if currentLetter needs to be reset each use
+			if(!oldL.equals(letters)) {
+				//currentLetter = "A";
+				oldL = new String(letters);
+			}
 			if(currentLetter=="A") piece = new APiece(this);
 			else if(currentLetter=="B") piece = new BPiece(this);
 			else piece = new CPiece(this);

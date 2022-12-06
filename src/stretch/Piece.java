@@ -26,7 +26,7 @@ public abstract class Piece {
 	
 	public boolean isValid() {
 		for(Square t:s) {
-			if(t==null || t.isBlocked() || t.getLetter()!=null) return false;
+			if(t==null || t.isBlocked() || !t.getLetter().equals(" ")) return false;
 		}
 		return true;
 	}
